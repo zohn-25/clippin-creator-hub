@@ -1,4 +1,4 @@
-import { TrendingUp, Users, Shield, DollarSign, Clock, Star, Zap, Target } from 'lucide-react';
+import { TrendingUp, Users, Shield, DollarSign, Clock, Star, Zap, Target, Check, Scissors } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 export const WhyChooseUs = () => {
@@ -83,6 +83,154 @@ export const WhyChooseUs = () => {
           </p>
         </div>
 
+        {/* Dual Business Models */}
+        <section className="mb-20">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-orbitron font-bold gradient-text mb-4">
+              Two Revolutionary Earning Models
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+              Clippin offers unprecedented flexibility with two distinct monetization pathways designed for different content creators
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+            {/* Model 1: Traditional Creator-Brand */}
+            <Card className="glass-card p-8">
+              <div className="text-center mb-8">
+                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-10 w-10 text-primary" />
+                </div>
+                <h3 className="text-2xl font-orbitron font-bold gradient-text mb-2">
+                  Creator-Brand Partnership Model
+                </h3>
+                <p className="text-muted-foreground">
+                  Traditional sponsored content with premium rates and reliable partnerships
+                </p>
+              </div>
+              
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Check className="h-4 w-4 text-green-400" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-primary mb-1">Guaranteed Payments</h4>
+                    <p className="text-sm text-muted-foreground">Fixed campaign budgets from ₹5,000 to ₹50,000 per collaboration</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Check className="h-4 w-4 text-green-400" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-primary mb-1">Brand Authenticity</h4>
+                    <p className="text-sm text-muted-foreground">Work with verified brands for genuine partnerships and long-term relationships</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Check className="h-4 w-4 text-green-400" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-primary mb-1">Creative Freedom</h4>
+                    <p className="text-sm text-muted-foreground">Maintain your authentic voice while promoting products you believe in</p>
+                  </div>
+                </div>
+
+                <div className="bg-primary/5 p-4 rounded-lg border border-primary/20">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-primary">₹50-500</div>
+                    <div className="text-sm text-muted-foreground">per 1K views</div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            {/* Model 2: Edit to Earn */}
+            <Card className="glass-card p-8">
+              <div className="text-center mb-8">
+                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Scissors className="h-10 w-10 text-primary" />
+                </div>
+                <h3 className="text-2xl font-orbitron font-bold gradient-text mb-2">
+                  Edit to Earn Model
+                </h3>
+                <p className="text-muted-foreground">
+                  Revolutionary clip creation system that turns raw content into viral moments
+                </p>
+              </div>
+              
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Zap className="h-4 w-4 text-blue-400" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-primary mb-1">Viral Potential</h4>
+                    <p className="text-sm text-muted-foreground">Create clips that can reach millions and earn ₹60-120 per 1K views</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <TrendingUp className="h-4 w-4 text-blue-400" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-primary mb-1">Skill Development</h4>
+                    <p className="text-sm text-muted-foreground">Improve your editing skills while earning from successful creators' content</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Star className="h-4 w-4 text-blue-400" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-primary mb-1">Creator Collaboration</h4>
+                    <p className="text-sm text-muted-foreground">Build relationships with big creators and become their go-to editor</p>
+                  </div>
+                </div>
+
+                <div className="bg-primary/5 p-4 rounded-lg border border-primary/20">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-primary">₹60-120</div>
+                    <div className="text-sm text-muted-foreground">per 1K views</div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+
+          {/* Why Choose Both */}
+          <div className="text-center">
+            <Card className="glass-card p-8 max-w-4xl mx-auto">
+              <h3 className="text-2xl font-orbitron font-bold gradient-text mb-4">
+                Why Not Choose Both?
+              </h3>
+              <p className="text-lg text-muted-foreground mb-6">
+                Maximize your earning potential by participating in both models. Many successful creators earn from brand partnerships while also providing raw content for editing, or edit clips while running their own campaigns.
+              </p>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary mb-2">2x</div>
+                  <div className="text-sm text-muted-foreground">Revenue Streams</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary mb-2">₹100K+</div>
+                  <div className="text-sm text-muted-foreground">Monthly Potential</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary mb-2">365</div>
+                  <div className="text-sm text-muted-foreground">Days of Earning</div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </section>
+
         {/* Key Features */}
         <section className="mb-20">
           <h2 className="text-3xl font-orbitron font-bold text-center gradient-text mb-12">
@@ -107,74 +255,6 @@ export const WhyChooseUs = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </section>
-
-        {/* Stats Section */}
-        <section className="mb-20">
-          <h2 className="text-3xl font-orbitron font-bold text-center gradient-text mb-12">
-            Platform Impact
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {stats.map((stat, index) => (
-              <Card key={index} className="glass-card border-white/20 text-center">
-                <CardContent className="p-6">
-                  <div className="text-4xl font-orbitron font-bold gradient-text mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-lg font-rajdhani font-semibold mb-1">
-                    {stat.label}
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    {stat.growth}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* How It Works */}
-        <section className="mb-20">
-          <h2 className="text-3xl font-orbitron font-bold text-center gradient-text mb-12">
-            How Clippin Works
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="glass-card border-white/20 text-center">
-              <CardContent className="p-8">
-                <div className="p-4 rounded-full bg-gradient-primary w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-orbitron font-bold text-white">1</span>
-                </div>
-                <h3 className="text-xl font-orbitron font-semibold mb-4">Browse & Apply</h3>
-                <p className="text-muted-foreground">
-                  Browse campaigns from top brands and apply to those that match your audience and style.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="glass-card border-white/20 text-center">
-              <CardContent className="p-8">
-                <div className="p-4 rounded-full bg-gradient-primary w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-orbitron font-bold text-white">2</span>
-                </div>
-                <h3 className="text-xl font-orbitron font-semibold mb-4">Create Content</h3>
-                <p className="text-muted-foreground">
-                  Create authentic content that resonates with your audience while meeting campaign guidelines.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="glass-card border-white/20 text-center">
-              <CardContent className="p-8">
-                <div className="p-4 rounded-full bg-gradient-primary w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-orbitron font-bold text-white">3</span>
-                </div>
-                <h3 className="text-xl font-orbitron font-semibold mb-4">Earn by Performance</h3>
-                <p className="text-muted-foreground">
-                  Get paid based on actual results - the better your content performs, the more you earn.
-                </p>
-              </CardContent>
-            </Card>
           </div>
         </section>
 

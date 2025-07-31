@@ -1,6 +1,7 @@
-import { ArrowRight, Play, Users, TrendingUp, Star } from 'lucide-react';
+import { ArrowRight, Play, Users, TrendingUp, Star, Scissors } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import heroImage from '@/assets/hero-bg.jpg';
 
 export const Home = () => {
@@ -127,47 +128,154 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* How It Works Section */}
+      {/* How It Works - Dual Models */}
       <section className="py-20 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-orbitron font-bold gradient-text mb-4">
-              How It Works
+              Two Powerful Earning Models
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Simple, transparent, and performance-driven process
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Choose the model that fits your content creation style and audience
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="glass-card p-8 text-center hover:scale-105 transition-transform duration-300">
-              <div className="p-4 rounded-full bg-gradient-primary w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl font-orbitron font-bold text-white">1</span>
+          
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Model 1: Creators & Brands */}
+            <Card className="glass-card p-8 hover:scale-105 transition-transform">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-orbitron font-bold gradient-text mb-2">
+                  Creator-Brand Campaigns
+                </h3>
+                <p className="text-muted-foreground">
+                  Partner with brands for sponsored content campaigns
+                </p>
               </div>
-              <h3 className="text-xl font-orbitron font-semibold mb-4">Apply to Campaigns</h3>
-              <p className="text-muted-foreground">
-                Browse and apply to campaigns that match your audience and content style
-              </p>
-            </div>
-
-            <div className="glass-card p-8 text-center hover:scale-105 transition-transform duration-300">
-              <div className="p-4 rounded-full bg-gradient-primary w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl font-orbitron font-bold text-white">2</span>
+              
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-primary font-bold text-xs">1</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-primary">Brands Post Campaigns</h4>
+                    <p className="text-sm text-muted-foreground">Companies create campaigns with specific requirements and budgets</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-primary font-bold text-xs">2</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-primary">Creators Apply</h4>
+                    <p className="text-sm text-muted-foreground">Content creators browse and apply to relevant campaigns</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-primary font-bold text-xs">3</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-primary">Create & Earn</h4>
+                    <p className="text-sm text-muted-foreground">Create sponsored content and earn ₹50-500/1K views</p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-xl font-orbitron font-semibold mb-4">Create Content</h3>
-              <p className="text-muted-foreground">
-                Create authentic, engaging content that resonates with your audience
-              </p>
-            </div>
-
-            <div className="glass-card p-8 text-center hover:scale-105 transition-transform duration-300">
-              <div className="p-4 rounded-full bg-gradient-primary w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl font-orbitron font-bold text-white">3</span>
+              
+              <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-muted-foreground">Typical Earnings:</span>
+                  <span className="text-primary font-bold">₹5,000 - ₹50,000 per campaign</span>
+                </div>
               </div>
-              <h3 className="text-xl font-orbitron font-semibold mb-4">Earn by Performance</h3>
-              <p className="text-muted-foreground">
-                Get paid based on actual engagement, views, and results you drive
-              </p>
+            </Card>
+
+            {/* Model 2: Big Creators & Editors */}
+            <Card className="glass-card p-8 hover:scale-105 transition-transform">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Scissors className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-orbitron font-bold gradient-text mb-2">
+                  Edit to Earn System
+                </h3>
+                <p className="text-muted-foreground">
+                  Transform raw content into viral clips for revenue sharing
+                </p>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-primary font-bold text-xs">1</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-primary">Creators Upload Raw Content</h4>
+                    <p className="text-sm text-muted-foreground">Big creators share long-form content (podcasts, tutorials, streams)</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-primary font-bold text-xs">2</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-primary">Editors Create Clips</h4>
+                    <p className="text-sm text-muted-foreground">Skilled editors browse content and create engaging short clips</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-primary font-bold text-xs">3</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-primary">Performance-Based Earnings</h4>
+                    <p className="text-sm text-muted-foreground">Earn ₹60-120/1K views based on clip performance</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-muted-foreground">Typical Earnings:</span>
+                  <span className="text-primary font-bold">₹1,000 - ₹15,000 per clip</span>
+                </div>
+              </div>
+            </Card>
+          </div>
+          
+          <div className="text-center mt-12">
+            <p className="text-lg text-muted-foreground mb-6">
+              Choose your path or participate in both models to maximize your earnings
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                asChild 
+                className="glow-button px-8 py-3"
+                size="lg"
+              >
+                <Link to="/campaigns">
+                  <Users className="h-5 w-5 mr-2" />
+                  Explore Brand Campaigns
+                </Link>
+              </Button>
+              <Button 
+                asChild 
+                variant="outline" 
+                className="border-white/20 bg-background/50 px-8 py-3"
+                size="lg"
+              >
+                <Link to="/clip-hub">
+                  <Scissors className="h-5 w-5 mr-2" />
+                  Join Clip Hub
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
