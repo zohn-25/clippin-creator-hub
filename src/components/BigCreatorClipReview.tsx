@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
 import { Check, X, MessageSquare, Clock, User, Play, Calendar, Eye, Video } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 
@@ -28,16 +28,12 @@ interface ClipSubmission {
 }
 
 export const BigCreatorClipReview = () => {
-  const [pendingClips, setPendingClips] = useState<ClipSubmission[]>([]);
-  const [approvedClips, setApprovedClips] = useState<ClipSubmission[]>([]);
-  const [rejectedClips, setRejectedClips] = useState<ClipSubmission[]>([]);
   const [allClips, setAllClips] = useState<ClipSubmission[]>([]);
   const [selectedClip, setSelectedClip] = useState<ClipSubmission | null>(null);
   const [previewClip, setPreviewClip] = useState<ClipSubmission | null>(null);
   const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
   const [feedback, setFeedback] = useState('');
-  const [activeTab, setActiveTab] = useState('pending');
 
   useEffect(() => {
     // Load clips from localStorage
@@ -183,9 +179,6 @@ export const BigCreatorClipReview = () => {
     }
     
     setAllClips(creatorClips);
-    setPendingClips(creatorClips.filter(clip => clip.status === 'Pending'));
-    setApprovedClips(creatorClips.filter(clip => clip.status === 'Approved'));
-    setRejectedClips(creatorClips.filter(clip => clip.status === 'Rejected'));
   }, []);
 
   const updateClipStatus = (clipId: string, newStatus: 'Approved' | 'Rejected', feedback?: string) => {
@@ -222,9 +215,6 @@ export const BigCreatorClipReview = () => {
     // Update local state
     const updatedAllClips = JSON.parse(localStorage.getItem('creatorClips') || '[]') as ClipSubmission[];
     setAllClips(updatedAllClips);
-    setPendingClips(updatedAllClips.filter(clip => clip.status === 'Pending'));
-    setApprovedClips(updatedAllClips.filter(clip => clip.status === 'Approved'));
-    setRejectedClips(updatedAllClips.filter(clip => clip.status === 'Rejected'));
   };
 
   const handleApprove = (clip: ClipSubmission) => {
@@ -396,86 +386,6 @@ export const BigCreatorClipReview = () => {
           )}
         </CardContent>
       </Card>
-
-      <div className="text-center mb-8">
-        <h3 className="text-2xl font-orbitron font-bold gradient-text mb-2">
-          Organized Review
-        </h3>
-        <p className="text-muted-foreground">
-          View clips organized by status for better management
-        </p>
-      </div>
-
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-3 glass-card border-white/20">
-          <TabsTrigger value="pending" className="flex items-center gap-2">
-            <Clock className="h-4 w-4" />
-            Pending Review ({pendingClips.length})
-          </TabsTrigger>
-          <TabsTrigger value="approved" className="flex items-center gap-2">
-            <Check className="h-4 w-4" />
-            Approved ({approvedClips.length})
-          </TabsTrigger>
-          <TabsTrigger value="rejected" className="flex items-center gap-2">
-            <X className="h-4 w-4" />
-            Rejected ({rejectedClips.length})
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="pending" className="space-y-4">
-          {pendingClips.length === 0 ? (
-            <Card className="glass-card">
-              <CardContent className="text-center py-12">
-                <Clock className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <p className="text-muted-foreground text-lg">No pending clips to review</p>
-                <p className="text-sm text-muted-foreground">New clip submissions will appear here</p>
-              </CardContent>
-            </Card>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {pendingClips.map((clip) => (
-                <ClipCard key={clip.id} clip={clip} showActions={true} />
-              ))}
-            </div>
-          )}
-        </TabsContent>
-
-        <TabsContent value="approved" className="space-y-4">
-          {approvedClips.length === 0 ? (
-            <Card className="glass-card">
-              <CardContent className="text-center py-12">
-                <Check className="h-12 w-12 text-green-400 mx-auto mb-4" />
-                <p className="text-muted-foreground text-lg">No approved clips yet</p>
-                <p className="text-sm text-muted-foreground">Approved clips will appear here</p>
-              </CardContent>
-            </Card>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {approvedClips.map((clip) => (
-                <ClipCard key={clip.id} clip={clip} />
-              ))}
-            </div>
-          )}
-        </TabsContent>
-
-        <TabsContent value="rejected" className="space-y-4">
-          {rejectedClips.length === 0 ? (
-            <Card className="glass-card">
-              <CardContent className="text-center py-12">
-                <X className="h-12 w-12 text-red-400 mx-auto mb-4" />
-                <p className="text-muted-foreground text-lg">No rejected clips</p>
-                <p className="text-sm text-muted-foreground">Rejected clips will appear here</p>
-              </CardContent>
-            </Card>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {rejectedClips.map((clip) => (
-                <ClipCard key={clip.id} clip={clip} />
-              ))}
-            </div>
-          )}
-        </TabsContent>
-      </Tabs>
 
       {/* Preview Modal */}
       <Dialog open={isPreviewModalOpen} onOpenChange={setIsPreviewModalOpen}>
