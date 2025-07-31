@@ -366,10 +366,10 @@ export const Home = () => {
               Join thousands of creators already earning performance-based payouts
             </p>
             <Link to="/campaigns">
-              <Button3D className="glow-button bg-gradient-primary text-lg px-12 py-4">
+              <Button size="lg" className="glow-button bg-gradient-primary text-lg px-12 py-4">
                 Start Creating Today
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </Button3D>
+              </Button>
             </Link>
           </div>
         </div>
