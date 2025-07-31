@@ -109,25 +109,38 @@ All colors MUST be HSL.
   /* Custom cursor */
   .cursor {
     position: fixed;
-    width: 20px;
-    height: 20px;
+    width: 12px;
+    height: 12px;
     background: hsl(var(--primary));
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    mix-blend-mode: difference;
     transition: transform 0.1s ease;
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.8);
   }
 
-  .cursor-follower {
+  .cursor-trail {
     position: fixed;
-    width: 40px;
-    height: 40px;
-    border: 2px solid hsl(var(--primary) / 0.5);
+    width: 30px;
+    height: 30px;
+    border: 1px solid hsl(var(--primary) / 0.6);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9998;
-    transition: transform 0.15s ease;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: radial-gradient(circle, hsl(var(--primary) / 0.1) 0%, transparent 70%);
+  }
+
+  .cursor-particles {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: hsl(var(--primary));
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9997;
+    opacity: 0.7;
+    animation: particle-float 2s infinite ease-in-out;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -185,4 +198,23 @@ All colors MUST be HSL.
 @keyframes glow {
   from { box-shadow: 0 0 20px hsl(var(--primary) / 0.3); }
   to { box-shadow: 0 0 30px hsl(var(--primary) / 0.6); }
+}
+
+@keyframes particle-float {
+  0%, 100% { 
+    transform: scale(1) rotate(0deg);
+    opacity: 0.7;
+  }
+  25% { 
+    transform: scale(1.2) rotate(90deg);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(0.8) rotate(180deg);
+    opacity: 0.5;
+  }
+  75% { 
+    transform: scale(1.1) rotate(270deg);
+    opacity: 0.8;
+  }
 }

@@ -2,17 +2,36 @@ import { useEffect, useState } from 'react';
 
 export const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [followerPosition, setFollowerPosition] = useState({ x: 0, y: 0 });
+  const [trailPosition, setTrailPosition] = useState({ x: 0, y: 0 });
+  const [particles, setParticles] = useState<Array<{ x: number; y: number; id: number }>>([]);
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
+    let particleId = 0;
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       
-      // Delayed follower animation
+      // Delayed trail animation
       setTimeout(() => {
-        setFollowerPosition({ x: e.clientX, y: e.clientY });
-      }, 100);
+        setTrailPosition({ x: e.clientX, y: e.clientY });
+      }, 80);
+
+      // Create particle trail
+      if (Math.random() > 0.7) {
+        const newParticle = { 
+          x: e.clientX + (Math.random() - 0.5) * 20, 
+          y: e.clientY + (Math.random() - 0.5) * 20, 
+          id: particleId++ 
+        };
+        
+        setParticles(prev => [...prev.slice(-8), newParticle]);
+        
+        // Remove particle after animation
+        setTimeout(() => {
+          setParticles(prev => prev.filter(p => p.id !== newParticle.id));
+        }, 2000);
+      }
     };
 
     const handleMouseEnter = () => setIsHovering(true);
@@ -43,19 +62,32 @@ export const CustomCursor = () => {
       <div
         className={`cursor ${isHovering ? 'scale-150' : ''}`}
         style={{
-          left: `${mousePosition.x - 10}px`,
-          top: `${mousePosition.y - 10}px`,
+          left: `${mousePosition.x - 6}px`,
+          top: `${mousePosition.y - 6}px`,
         }}
       />
       
-      {/* Follower ring */}
+      {/* Trail ring */}
       <div
-        className={`cursor-follower ${isHovering ? 'scale-125' : ''}`}
+        className={`cursor-trail ${isHovering ? 'scale-150 border-2' : ''}`}
         style={{
-          left: `${followerPosition.x - 20}px`,
-          top: `${followerPosition.y - 20}px`,
+          left: `${trailPosition.x - 15}px`,
+          top: `${trailPosition.y - 15}px`,
         }}
       />
+
+      {/* Floating particles */}
+      {particles.map(particle => (
+        <div
+          key={particle.id}
+          className="cursor-particles"
+          style={{
+            left: `${particle.x - 2}px`,
+            top: `${particle.y - 2}px`,
+            animationDelay: `${Math.random() * 0.5}s`,
+          }}
+        />
+      ))}
     </>
   );
 };
