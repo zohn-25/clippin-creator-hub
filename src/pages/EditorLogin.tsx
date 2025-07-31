@@ -4,10 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Users, Eye, EyeOff, ArrowLeft } from 'lucide-react';
+import { Scissors, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 
-export const CreatorLogin = () => {
+export const EditorLogin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,21 +29,21 @@ export const CreatorLogin = () => {
     // Simulate login delay
     setTimeout(() => {
       // Store role and simulate successful login
-      localStorage.setItem('clipHubRole', 'creator');
+      localStorage.setItem('clipHubRole', 'editor');
       localStorage.setItem('isLoggedIn', 'true');
       
       toast({
         title: "Login Successful!",
-        description: "Welcome to your Creator Dashboard.",
+        description: "Welcome to your Editor Dashboard.",
       });
       
-      navigate('/creator-dashboard');
+      navigate('/editor-dashboard');
       setIsLoading(false);
     }, 1500);
   };
 
   const handleDemoLogin = () => {
-    setEmail('creator@demo.com');
+    setEmail('editor@demo.com');
     setPassword('demo123');
   };
 
@@ -63,13 +63,13 @@ export const CreatorLogin = () => {
         <Card className="glass-card">
           <CardHeader className="text-center">
             <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-              <Users className="h-8 w-8 text-primary" />
+              <Scissors className="h-8 w-8 text-primary" />
             </div>
             <CardTitle className="text-2xl font-orbitron gradient-text">
-              Big Creator Login
+              Editor Login
             </CardTitle>
             <p className="text-muted-foreground">
-              Access your creator dashboard to upload content
+              Access your editor dashboard to create clips
             </p>
           </CardHeader>
           
@@ -83,7 +83,7 @@ export const CreatorLogin = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="creator@example.com"
+                placeholder="editor@example.com"
                 className="bg-background/50 border-white/20"
               />
             </div>
@@ -130,8 +130,8 @@ export const CreatorLogin = () => {
                 </>
               ) : (
                 <>
-                  <Users className="h-5 w-5 mr-2" />
-                  Login as Creator
+                  <Scissors className="h-5 w-5 mr-2" />
+                  Login as Editor
                 </>
               )}
             </Button>
@@ -154,7 +154,7 @@ export const CreatorLogin = () => {
             <div className="mt-6 p-4 rounded-lg bg-primary/5 border border-primary/20">
               <h4 className="text-sm font-medium text-primary mb-2">Demo Account Info:</h4>
               <p className="text-xs text-muted-foreground">
-                Email: creator@demo.com<br />
+                Email: editor@demo.com<br />
                 Password: demo123
               </p>
             </div>

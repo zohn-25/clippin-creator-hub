@@ -9,8 +9,9 @@ import { ClipsHub } from "./pages/ClipsHub";
 import { ClipHubRoleSelection } from "./pages/ClipHubRoleSelection";
 import { CreatorDashboard } from "./pages/CreatorDashboard";
 import { EditorDashboard } from "./pages/EditorDashboard";
-import { Dashboard } from "./pages/Dashboard";
 import { CreatorLogin } from "./pages/CreatorLogin";
+import { EditorLogin } from "./pages/EditorLogin";
+import { Dashboard } from "./pages/Dashboard";
 import { BrandLogin } from "./pages/BrandLogin";
 import { ContactUs } from "./pages/ContactUs";
 import { WhyChooseUs } from "./pages/WhyChooseUs";
@@ -31,11 +32,12 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/campaigns" element={<Campaigns />} />
-        <Route path="/clip-hub" element={<ClipHubRoleSelection />} />
-        <Route path="/creator-dashboard" element={<CreatorDashboard />} />
-        <Route path="/editor-dashboard" element={<EditorDashboard />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/clip-hub" element={<ClipHubRoleSelection />} />
             <Route path="/creator-login" element={<CreatorLogin />} />
+            <Route path="/editor-login" element={<EditorLogin />} />
+            <Route path="/creator-dashboard" element={<CreatorDashboard />} />
+            <Route path="/editor-dashboard" element={<EditorDashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/brand-login" element={<BrandLogin />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/why-choose-us" element={<WhyChooseUs />} />

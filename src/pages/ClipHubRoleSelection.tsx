@@ -7,13 +7,10 @@ export const ClipHubRoleSelection = () => {
   const navigate = useNavigate();
 
   const handleRoleSelection = (role: 'creator' | 'editor') => {
-    // Simulate login by storing role in localStorage
-    localStorage.setItem('clipHubRole', role);
-    
     if (role === 'creator') {
-      navigate('/creator-dashboard');
+      navigate('/creator-login');
     } else {
-      navigate('/editor-dashboard');
+      navigate('/editor-login');
     }
   };
 
