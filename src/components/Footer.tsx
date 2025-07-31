@@ -101,14 +101,6 @@ export const Footer = () => {
               <div className="text-muted-foreground text-sm mb-4 md:mb-0">
                 © 2024 Clippin. All rights reserved.
               </div>
-              
-              <div className="text-muted-foreground text-sm">
-                Built by{' '}
-                <span className="text-primary font-medium">Loop Media</span>
-                {' '}·{' '}
-                Powered by{' '}
-                <span className="gradient-text font-medium">Performance</span>
-              </div>
             </div>
           </div>
         </div>
