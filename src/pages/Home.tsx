@@ -55,23 +55,30 @@ export const Home = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link to="/campaigns">
-                <Button size="lg" className="glow-button bg-gradient-primary text-lg px-8 py-4">
-                  Get Started
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
+              <Button 
+                size="lg" 
+                className="glow-button bg-gradient-primary text-lg px-8 py-4"
+                onClick={() => {
+                  localStorage.setItem('role', 'creator');
+                  window.location.reload();
+                }}
+              >
+                <Users className="mr-2 h-5 w-5" />
+                Login as Creator
+              </Button>
               
-              <Link to="/campaigns">
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="bg-white/10 border-white/20 text-white hover:bg-white/20 text-lg px-8 py-4"
-                >
-                  <Play className="mr-2 h-5 w-5" />
-                  Explore Campaigns
-                </Button>
-              </Link>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="bg-white/10 border-white/20 text-white hover:bg-white/20 text-lg px-8 py-4"
+                onClick={() => {
+                  localStorage.setItem('role', 'brand');
+                  window.location.reload();
+                }}
+              >
+                <TrendingUp className="mr-2 h-5 w-5" />
+                Login as Brand
+              </Button>
             </div>
 
             {/* Stats */}

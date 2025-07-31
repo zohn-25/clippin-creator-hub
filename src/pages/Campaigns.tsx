@@ -61,6 +61,32 @@ export const Campaigns = () => {
           </p>
         </div>
 
+        {/* Categories Section */}
+        <div className="glass-card p-6 mb-8">
+          <h2 className="text-xl font-orbitron font-semibold mb-4 gradient-text">Browse by Category</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {['Tech', 'Fitness', 'Fashion', 'Food', 'Gaming', 'Travel', 'Beauty', 'Education', 'Music', 'Lifestyle', 'Finance', 'Entertainment'].map((category) => (
+              <div key={category} className="glass-card-light p-4 text-center hover:bg-white/10 transition-all cursor-pointer group">
+                <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">
+                  {category === 'Tech' && '💻'}
+                  {category === 'Fitness' && '💪'}
+                  {category === 'Fashion' && '👗'}
+                  {category === 'Food' && '🍕'}
+                  {category === 'Gaming' && '🎮'}
+                  {category === 'Travel' && '✈️'}
+                  {category === 'Beauty' && '💄'}
+                  {category === 'Education' && '📚'}
+                  {category === 'Music' && '🎵'}
+                  {category === 'Lifestyle' && '🌟'}
+                  {category === 'Finance' && '💰'}
+                  {category === 'Entertainment' && '🎬'}
+                </div>
+                <p className="text-sm font-rajdhani font-medium">{category}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Search and Filters */}
         <div className="glass-card p-6 mb-8">
           <div className="flex flex-col md:flex-row gap-4 items-center">

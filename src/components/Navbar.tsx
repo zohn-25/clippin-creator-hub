@@ -19,7 +19,6 @@ export const Navbar = () => {
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/campaigns', label: 'Campaigns' },
-    { path: '/dashboard', label: 'My Dashboard' },
   ];
 
   return (
