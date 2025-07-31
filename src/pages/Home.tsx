@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Button3D } from '@/components/Button3D';
 import { HoverCard3D } from '@/components/HoverCard3D';
 import { Card } from '@/components/ui/card';
-import heroImage from '@/assets/hero-bg.jpg';
+import heroImage from '@/assets/hero-bg-future.webp';
 
 export const Home = () => {
   const stats = [
@@ -38,10 +38,12 @@ export const Home = () => {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-black/60" />
+          {/* Enhanced gradient overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-purple-900/40 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
         </div>
 
         {/* Hero Content */}
