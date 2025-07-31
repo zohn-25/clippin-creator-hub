@@ -201,58 +201,60 @@ export const Home = () => {
             </HoverCard3D>
 
             {/* Model 2: Big Creators & Editors */}
-            <Card className="glass-card p-8 hover:scale-105 transition-transform">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Scissors className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-orbitron font-bold gradient-text mb-2">
-                  Edit to Earn System
-                </h3>
-                <p className="text-muted-foreground">
-                  Transform raw content into viral clips for revenue sharing
-                </p>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-primary font-bold text-xs">1</span>
+            <HoverCard3D>
+              <Card className="glass-card p-8 card-3d">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Scissors className="h-8 w-8 text-primary" />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-primary">Creators Upload Raw Content</h4>
-                    <p className="text-sm text-muted-foreground">Big creators share long-form content (podcasts, tutorials, streams)</p>
+                  <h3 className="text-2xl font-orbitron font-bold gradient-text mb-2">
+                    Edit to Earn System
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Transform raw content into viral clips for revenue sharing
+                  </p>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-primary font-bold text-xs">1</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-primary">Creators Upload Raw Content</h4>
+                      <p className="text-sm text-muted-foreground">Big creators share long-form content (podcasts, tutorials, streams)</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-primary font-bold text-xs">2</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-primary">Editors Create Clips</h4>
+                      <p className="text-sm text-muted-foreground">Skilled editors browse content and create engaging short clips</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-primary font-bold text-xs">3</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-primary">Performance-Based Earnings</h4>
+                      <p className="text-sm text-muted-foreground">Earn ₹60-120/1K views based on clip performance</p>
+                    </div>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-primary font-bold text-xs">2</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-primary">Editors Create Clips</h4>
-                    <p className="text-sm text-muted-foreground">Skilled editors browse content and create engaging short clips</p>
+                <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-muted-foreground">Typical Earnings:</span>
+                    <span className="text-primary font-bold">₹1,000 - ₹15,000 per clip</span>
                   </div>
                 </div>
-                
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-primary font-bold text-xs">3</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-primary">Performance-Based Earnings</h4>
-                    <p className="text-sm text-muted-foreground">Earn ₹60-120/1K views based on clip performance</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-muted-foreground">Typical Earnings:</span>
-                  <span className="text-primary font-bold">₹1,000 - ₹15,000 per clip</span>
-                </div>
-              </div>
-            </Card>
+              </Card>
+            </HoverCard3D>
           </div>
           
           <div className="text-center mt-12">
