@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Campaigns } from "./pages/Campaigns";
 import { ClipsHub } from "./pages/ClipsHub";
+import { ClipHubRoleSelection } from "./pages/ClipHubRoleSelection";
+import { CreatorDashboard } from "./pages/CreatorDashboard";
+import { EditorDashboard } from "./pages/EditorDashboard";
 import { Dashboard } from "./pages/Dashboard";
 import { CreatorLogin } from "./pages/CreatorLogin";
 import { BrandLogin } from "./pages/BrandLogin";
@@ -28,7 +31,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/campaigns" element={<Campaigns />} />
-            <Route path="/clips-hub" element={<ClipsHub />} />
+        <Route path="/clip-hub" element={<ClipHubRoleSelection />} />
+        <Route path="/creator-dashboard" element={<CreatorDashboard />} />
+        <Route path="/editor-dashboard" element={<EditorDashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/creator-login" element={<CreatorLogin />} />
             <Route path="/brand-login" element={<BrandLogin />} />
