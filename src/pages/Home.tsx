@@ -59,20 +59,24 @@ export const Home = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link to="/creator-login">
-                <Button3D className="glow-button bg-gradient-primary text-lg px-8 py-4">
+                <Button 
+                  size="lg" 
+                  className="glow-button bg-gradient-primary text-lg px-8 py-4"
+                >
                   <Users className="mr-2 h-5 w-5" />
                   Login as Creator
-                </Button3D>
+                </Button>
               </Link>
               
               <Link to="/brand-login">
-                <Button3D 
+                <Button 
                   variant="outline" 
+                  size="lg" 
                   className="bg-white/10 border-white/20 text-white hover:bg-white/20 text-lg px-8 py-4"
                 >
                   <TrendingUp className="mr-2 h-5 w-5" />
                   Login as Brand
-                </Button3D>
+                </Button>
               </Link>
             </div>
 
