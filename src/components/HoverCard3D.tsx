@@ -12,25 +12,24 @@ const FloatingCube = ({ isHovered }: FloatingCubeProps) => {
 
   useFrame((state, delta) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x += delta * 0.5;
-      meshRef.current.rotation.y += delta * 0.3;
+      meshRef.current.rotation.x += delta * 0.2;
+      meshRef.current.rotation.y += delta * 0.15;
       
-      if (isHovered) {
-        meshRef.current.scale.lerp(new THREE.Vector3(1.5, 1.5, 1.5), 0.1);
-      } else {
-        meshRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
-      }
+      const targetScale = isHovered ? 1.2 : 1;
+      meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.05);
     }
   });
 
   return (
-    <Float speed={1} rotationIntensity={1} floatIntensity={0.5}>
+    <Float speed={0.5} rotationIntensity={0.3} floatIntensity={0.2}>
       <mesh ref={meshRef}>
-        <boxGeometry args={[1, 1, 1]} />
+        <boxGeometry args={[0.8, 0.8, 0.8]} />
         <meshStandardMaterial 
-          color={isHovered ? "#8b5cf6" : "#a855f7"} 
+          color={isHovered ? "#a855f7" : "#8b5cf6"} 
           emissive={isHovered ? "#4c1d95" : "#3730a3"}
-          emissiveIntensity={0.2}
+          emissiveIntensity={0.1}
+          roughness={0.3}
+          metalness={0.4}
         />
       </mesh>
     </Float>
@@ -52,17 +51,17 @@ export const HoverCard3D = ({ children, className = '' }: HoverCard3DProps) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* 3D Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} />
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        <Canvas camera={{ position: [0, 0, 4], fov: 35 }}>
+          <ambientLight intensity={0.3} />
+          <pointLight position={[5, 5, 5]} intensity={0.4} />
           <FloatingCube isHovered={isHovered} />
         </Canvas>
       </div>
       
       {/* Content */}
-      <div className={`relative z-10 transition-all duration-500 ${
-        isHovered ? 'transform translate-z-4 scale-105' : ''
+      <div className={`relative z-10 transition-all duration-700 ease-out ${
+        isHovered ? 'transform translate-y-[-4px]' : ''
       }`}>
         {children}
       </div>

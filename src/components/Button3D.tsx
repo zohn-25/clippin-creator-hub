@@ -12,26 +12,23 @@ const FloatingSphere = ({ isHovered }: FloatingSphereProps) => {
 
   useFrame((state, delta) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += delta * 0.5;
+      meshRef.current.rotation.y += delta * 0.3;
       
-      if (isHovered) {
-        meshRef.current.scale.lerp(new THREE.Vector3(1.3, 1.3, 1.3), 0.15);
-      } else {
-        meshRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.15);
-      }
+      const targetScale = isHovered ? 1.1 : 1;
+      meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.08);
     }
   });
 
   return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={0.3}>
+    <Float speed={1} rotationIntensity={0.2} floatIntensity={0.15}>
       <mesh ref={meshRef}>
-        <sphereGeometry args={[0.5, 32, 32]} />
+        <sphereGeometry args={[0.4, 32, 32]} />
         <meshStandardMaterial 
           color={isHovered ? "#06d6a0" : "#8b5cf6"} 
           emissive={isHovered ? "#023e8a" : "#4c1d95"}
-          emissiveIntensity={0.3}
-          roughness={0.1}
-          metalness={0.8}
+          emissiveIntensity={0.2}
+          roughness={0.2}
+          metalness={0.6}
         />
       </mesh>
     </Float>
@@ -50,23 +47,23 @@ export const Button3D = ({ children, onClick, className = '', variant = 'default
 
   return (
     <button
-      className={`relative overflow-hidden rounded-xl transition-all duration-300 ${className}`}
+      className={`relative overflow-hidden rounded-xl transition-all duration-500 ease-out ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
     >
       {/* 3D Background */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none opacity-30">
-        <Canvas camera={{ position: [0, 0, 3], fov: 60 }}>
-          <ambientLight intensity={0.4} />
-          <pointLight position={[5, 5, 5]} intensity={0.6} />
+      <div className="absolute inset-0 w-full h-full pointer-events-none opacity-20">
+        <Canvas camera={{ position: [0, 0, 2.5], fov: 50 }}>
+          <ambientLight intensity={0.3} />
+          <pointLight position={[3, 3, 3]} intensity={0.4} />
           <FloatingSphere isHovered={isHovered} />
         </Canvas>
       </div>
       
       {/* Button Content */}
-      <div className={`relative z-10 px-6 py-3 transition-all duration-300 ${
-        isHovered ? 'transform translate-y-[-2px]' : ''
+      <div className={`relative z-10 px-6 py-3 transition-all duration-500 ease-out ${
+        isHovered ? 'transform translate-y-[-1px]' : ''
       }`}>
         {children}
       </div>
