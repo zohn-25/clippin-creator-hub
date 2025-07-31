@@ -115,6 +115,29 @@ export const WalletModal = ({ isOpen, onClose, role }: WalletModalProps) => {
                 </div>
               </div>
 
+              {/* Add Funds for Big Creator */}
+              {role === 'big-creator' && (
+                <div className="mb-6">
+                  <h3 className="text-lg font-orbitron font-semibold mb-3">Add Funds</h3>
+                  <div className="flex gap-3">
+                    <Input
+                      type="number"
+                      placeholder="Enter amount"
+                      value={addFundsAmount}
+                      onChange={(e) => setAddFundsAmount(e.target.value)}
+                      className="flex-1 bg-input/50 border-white/20"
+                    />
+                    <Button 
+                      onClick={handleAddFunds}
+                      className="glow-button bg-gradient-primary"
+                    >
+                      <Plus className="h-4 w-4 mr-2" />
+                      Add Funds
+                    </Button>
+                  </div>
+                </div>
+              )}
+
               {/* Withdraw Button */}
               <div className="mb-6">
                 <Button 
