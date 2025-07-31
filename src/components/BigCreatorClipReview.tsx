@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Check, X, MessageSquare, Clock, User, Play, Calendar } from 'lucide-react';
+import { Check, X, MessageSquare, Clock, User, Play, Calendar, Eye, Video } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 
 interface ClipSubmission {
@@ -31,8 +31,11 @@ export const BigCreatorClipReview = () => {
   const [pendingClips, setPendingClips] = useState<ClipSubmission[]>([]);
   const [approvedClips, setApprovedClips] = useState<ClipSubmission[]>([]);
   const [rejectedClips, setRejectedClips] = useState<ClipSubmission[]>([]);
+  const [allClips, setAllClips] = useState<ClipSubmission[]>([]);
   const [selectedClip, setSelectedClip] = useState<ClipSubmission | null>(null);
+  const [previewClip, setPreviewClip] = useState<ClipSubmission | null>(null);
   const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
   const [feedback, setFeedback] = useState('');
   const [activeTab, setActiveTab] = useState('pending');
 
@@ -40,6 +43,7 @@ export const BigCreatorClipReview = () => {
     // Load clips from localStorage
     const creatorClips = JSON.parse(localStorage.getItem('creatorClips') || '[]') as ClipSubmission[];
     
+    setAllClips(creatorClips);
     setPendingClips(creatorClips.filter(clip => clip.status === 'Pending'));
     setApprovedClips(creatorClips.filter(clip => clip.status === 'Approved'));
     setRejectedClips(creatorClips.filter(clip => clip.status === 'Rejected'));
@@ -77,9 +81,11 @@ export const BigCreatorClipReview = () => {
     localStorage.setItem('editorSubmissions', JSON.stringify(updatedEditorSubmissions));
     
     // Update local state
-    setPendingClips(updatedClips.filter(clip => clip.status === 'Pending'));
-    setApprovedClips(updatedClips.filter(clip => clip.status === 'Approved'));
-    setRejectedClips(updatedClips.filter(clip => clip.status === 'Rejected'));
+    const updatedAllClips = JSON.parse(localStorage.getItem('creatorClips') || '[]') as ClipSubmission[];
+    setAllClips(updatedAllClips);
+    setPendingClips(updatedAllClips.filter(clip => clip.status === 'Pending'));
+    setApprovedClips(updatedAllClips.filter(clip => clip.status === 'Approved'));
+    setRejectedClips(updatedAllClips.filter(clip => clip.status === 'Rejected'));
   };
 
   const handleApprove = (clip: ClipSubmission) => {
@@ -94,6 +100,10 @@ export const BigCreatorClipReview = () => {
       title: "Earnings Updated",
       description: "Your earnings have been updated with the new approved clip.",
     });
+
+    // Close preview modal if open
+    setIsPreviewModalOpen(false);
+    setPreviewClip(null);
   };
 
   const handleReject = () => {
@@ -109,6 +119,10 @@ export const BigCreatorClipReview = () => {
     setIsRejectModalOpen(false);
     setSelectedClip(null);
     setFeedback('');
+    
+    // Close preview modal if open
+    setIsPreviewModalOpen(false);
+    setPreviewClip(null);
   };
 
   const openRejectModal = (clip: ClipSubmission) => {
@@ -116,7 +130,12 @@ export const BigCreatorClipReview = () => {
     setIsRejectModalOpen(true);
   };
 
-  const ClipCard = ({ clip, showActions = false }: { clip: ClipSubmission; showActions?: boolean }) => (
+  const openPreviewModal = (clip: ClipSubmission) => {
+    setPreviewClip(clip);
+    setIsPreviewModalOpen(true);
+  };
+
+  const ClipCard = ({ clip, showActions = false, showPreview = false }: { clip: ClipSubmission; showActions?: boolean; showPreview?: boolean }) => (
     <Card className="glass-card overflow-hidden group hover:scale-[1.02] transition-all duration-300">
       <div className="relative">
         <img
@@ -157,6 +176,19 @@ export const BigCreatorClipReview = () => {
           </p>
         </div>
 
+        {showPreview && (
+          <div className="pt-3">
+            <Button
+              onClick={() => openPreviewModal(clip)}
+              className="w-full glow-button bg-blue-600 hover:bg-blue-700 text-white"
+              size="sm"
+            >
+              <Eye className="h-4 w-4 mr-2" />
+              Preview Clip
+            </Button>
+          </div>
+        )}
+
         {showActions && (
           <div className="flex gap-2 pt-3">
             <Button
@@ -196,13 +228,41 @@ export const BigCreatorClipReview = () => {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
+      {/* All Clips Section */}
+      <Card className="glass-card">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 gradient-text">
+            <Video className="h-6 w-6" />
+            All Clip Submissions ({allClips.length})
+          </CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Review all clips submitted by editors. Use preview to watch before approving or rejecting.
+          </p>
+        </CardHeader>
+        <CardContent>
+          {allClips.length === 0 ? (
+            <div className="text-center py-12">
+              <Video className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+              <p className="text-muted-foreground text-lg">No clip submissions yet</p>
+              <p className="text-sm text-muted-foreground">Editor submissions will appear here</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {allClips.map((clip) => (
+                <ClipCard key={clip.id} clip={clip} showPreview={true} />
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-orbitron font-bold gradient-text mb-2">
-          Clip Review
-        </h2>
+        <h3 className="text-2xl font-orbitron font-bold gradient-text mb-2">
+          Organized Review
+        </h3>
         <p className="text-muted-foreground">
-          Review and manage clips submitted by editors
+          View clips organized by status for better management
         </p>
       </div>
 
@@ -276,6 +336,109 @@ export const BigCreatorClipReview = () => {
           )}
         </TabsContent>
       </Tabs>
+
+      {/* Preview Modal */}
+      <Dialog open={isPreviewModalOpen} onOpenChange={setIsPreviewModalOpen}>
+        <DialogContent className="glass-card border-white/20 max-w-4xl">
+          <DialogHeader>
+            <DialogTitle className="gradient-text flex items-center gap-2">
+              <Play className="h-5 w-5" />
+              Preview Clip
+            </DialogTitle>
+          </DialogHeader>
+          {previewClip && (
+            <div className="space-y-6">
+              {/* Video Preview Area */}
+              <div className="relative bg-black rounded-lg overflow-hidden">
+                <img
+                  src={previewClip.thumbnailUrl}
+                  alt={previewClip.title}
+                  className="w-full h-64 object-cover"
+                />
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                  <div className="text-center">
+                    <Play className="h-16 w-16 text-white mx-auto mb-2" />
+                    <p className="text-white text-sm">Click to play preview</p>
+                    <p className="text-white/70 text-xs">Duration: {previewClip.duration}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Clip Information */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-3">
+                  <h3 className="font-rajdhani font-semibold text-lg">{previewClip.title}</h3>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-center gap-2">
+                      <User className="h-4 w-4 text-primary" />
+                      <span>Editor: <strong>{previewClip.editorName}</strong></span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-4 w-4 text-primary" />
+                      <span>Submitted: {previewClip.submittedDate}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Clock className="h-4 w-4 text-primary" />
+                      <span>Duration: {previewClip.duration}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <h4 className="font-rajdhani font-semibold">Clip Details</h4>
+                  <div className="space-y-2 text-sm">
+                    <p><strong>File Size:</strong> {previewClip.fileSize}</p>
+                    <p><strong>Hashtags:</strong> {previewClip.hashtags}</p>
+                    <p><strong>Status:</strong> 
+                      <Badge className="ml-2" variant={
+                        previewClip.status === 'Approved' ? 'default' : 
+                        previewClip.status === 'Pending' ? 'secondary' : 
+                        'destructive'
+                      }>
+                        {previewClip.status}
+                      </Badge>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              {previewClip.status === 'Pending' && (
+                <div className="flex gap-4 pt-4 border-t border-white/10">
+                  <Button
+                    onClick={() => handleApprove(previewClip)}
+                    className="flex-1 glow-button bg-green-600 hover:bg-green-700 text-white"
+                  >
+                    <Check className="h-4 w-4 mr-2" />
+                    ✅ Approve Clip
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setSelectedClip(previewClip);
+                      setIsRejectModalOpen(true);
+                    }}
+                    variant="destructive"
+                    className="flex-1"
+                  >
+                    <X className="h-4 w-4 mr-2" />
+                    ❌ Reject Clip
+                  </Button>
+                </div>
+              )}
+
+              <div className="flex justify-end">
+                <Button
+                  onClick={() => setIsPreviewModalOpen(false)}
+                  variant="outline"
+                  className="border-white/20"
+                >
+                  Close Preview
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* Reject Modal */}
       <Dialog open={isRejectModalOpen} onOpenChange={setIsRejectModalOpen}>
