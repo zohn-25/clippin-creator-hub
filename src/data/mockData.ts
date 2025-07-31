@@ -93,6 +93,128 @@ export const mockCampaigns: Campaign[] = [
   },
 ];
 
+export interface RawContent {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  category: string;
+  creator: string;
+  payoutPer1K: number;
+  uploadDate: string;
+  thumbnailUrl: string;
+  contentUrl: string;
+}
+
+export interface ClipSubmission {
+  id: string;
+  rawContentId: string;
+  rawContentTitle: string;
+  clipTitle: string;
+  hashtags: string[];
+  thumbnailUrl: string;
+  clipUrl: string;
+  views: number;
+  earnings: number;
+  status: 'pending' | 'approved' | 'rejected';
+  feedback?: string;
+  submittedDate: string;
+}
+
+export const mockRawContent: RawContent[] = [
+  {
+    id: '1',
+    title: 'Complete JavaScript Tutorial - 3 Hours',
+    description: 'Comprehensive JavaScript course covering all fundamentals',
+    duration: '3:15:42',
+    category: 'Education',
+    creator: 'TechGuru',
+    payoutPer1K: 80,
+    uploadDate: '2024-07-30',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400',
+    contentUrl: 'https://example.com/js-tutorial',
+  },
+  {
+    id: '2',
+    title: 'Fitness Transformation Journey - 6 Months',
+    description: 'Complete fitness transformation with daily workouts',
+    duration: '2:45:30',
+    category: 'Fitness',
+    creator: 'FitnessPro',
+    payoutPer1K: 120,
+    uploadDate: '2024-07-29',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1571019613914-85f342c7c6ba?w=400',
+    contentUrl: 'https://example.com/fitness-journey',
+  },
+  {
+    id: '3',
+    title: 'Gaming Stream Highlights - Epic Moments',
+    description: 'Best gaming moments from last week streams',
+    duration: '4:20:15',
+    category: 'Gaming',
+    creator: 'GameMaster',
+    payoutPer1K: 100,
+    uploadDate: '2024-07-28',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
+    contentUrl: 'https://example.com/gaming-highlights',
+  },
+  {
+    id: '4',
+    title: 'Cooking Masterclass - Italian Cuisine',
+    description: 'Learn to cook authentic Italian dishes',
+    duration: '1:55:20',
+    category: 'Food',
+    creator: 'ChefMario',
+    payoutPer1K: 90,
+    uploadDate: '2024-07-27',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400',
+    contentUrl: 'https://example.com/cooking-class',
+  },
+];
+
+export const mockClipSubmissions: ClipSubmission[] = [
+  {
+    id: '1',
+    rawContentId: '1',
+    rawContentTitle: 'Complete JavaScript Tutorial',
+    clipTitle: 'JavaScript Variables Explained in 60 Seconds',
+    hashtags: ['#javascript', '#coding', '#tutorial', '#webdev'],
+    thumbnailUrl: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400',
+    clipUrl: 'https://example.com/js-variables-clip',
+    views: 15420,
+    earnings: 1234,
+    status: 'approved',
+    feedback: 'Great editing and engaging content!',
+    submittedDate: '2024-07-28',
+  },
+  {
+    id: '2',
+    rawContentId: '2',
+    rawContentTitle: 'Fitness Transformation Journey',
+    clipTitle: 'Transform Your Body in 30 Days - Quick Tips',
+    hashtags: ['#fitness', '#transformation', '#workout', '#motivation'],
+    thumbnailUrl: 'https://images.unsplash.com/photo-1571019613914-85f342c7c6ba?w=400',
+    clipUrl: 'https://example.com/fitness-tips-clip',
+    views: 8350,
+    earnings: 1002,
+    status: 'approved',
+    submittedDate: '2024-07-26',
+  },
+  {
+    id: '3',
+    rawContentId: '3',
+    rawContentTitle: 'Gaming Stream Highlights',
+    clipTitle: 'Epic Gaming Fails Compilation',
+    hashtags: ['#gaming', '#fails', '#funny', '#highlights'],
+    thumbnailUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
+    clipUrl: 'https://example.com/gaming-fails-clip',
+    views: 5200,
+    earnings: 520,
+    status: 'pending',
+    submittedDate: '2024-07-25',
+  },
+];
+
 export const mockWalletData: WalletData = {
   creator: {
     earnings: 45650,
