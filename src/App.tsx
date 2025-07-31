@@ -19,6 +19,7 @@ import { ContactUs } from "./pages/ContactUs";
 import { WhyChooseUs } from "./pages/WhyChooseUs";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import { CustomCursor } from "./components/CustomCursor";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <CustomCursor />
         <div className="min-h-screen bg-gradient-bg">
           <Navbar />
           <Routes>
