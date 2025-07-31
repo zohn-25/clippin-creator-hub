@@ -21,10 +21,18 @@ interface ClipSubmission {
   id: string;
   title: string;
   videoId: string;
+  creatorName: string;
+  editorName: string;
+  clipUrl: string;
+  hashtags: string;
+  thumbnailUrl: string;
   status: 'Pending' | 'Approved' | 'Rejected';
   views: number;
   earnings: number;
   submittedDate: string;
+  feedback?: string;
+  fileSize: string;
+  duration: string;
 }
 
 export const EditorDashboard = () => {
@@ -61,26 +69,43 @@ export const EditorDashboard = () => {
     }
   ]);
 
-  const [submissions, setSubmissions] = useState<ClipSubmission[]>([
-    {
-      id: '1',
-      title: 'React Hooks Explained in 60 Seconds',
-      videoId: '1',
-      status: 'Approved',
-      views: 15000,
-      earnings: 1200,
-      submittedDate: '2024-07-29'
-    },
-    {
-      id: '2',
-      title: 'JavaScript Tips Every Developer Should Know',
-      videoId: '2',
-      status: 'Pending',
-      views: 0,
-      earnings: 0,
-      submittedDate: '2024-07-30'
-    }
-  ]);
+  const [submissions, setSubmissions] = useState<ClipSubmission[]>(() => {
+    const stored = localStorage.getItem('editorSubmissions');
+    return stored ? JSON.parse(stored) : [
+      {
+        id: '1',
+        title: 'React Hooks Explained in 60 Seconds',
+        videoId: '1',
+        creatorName: 'CodeMaster',
+        editorName: 'VideoEditor Pro',
+        clipUrl: 'https://youtube.com/watch?v=example1',
+        hashtags: '#react #hooks #webdev',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=300&h=200&fit=crop',
+        status: 'Approved',
+        views: 15000,
+        earnings: 1200,
+        submittedDate: '2024-07-29',
+        fileSize: '25.4 MB',
+        duration: '0:58'
+      },
+      {
+        id: '2',
+        title: 'JavaScript Tips Every Developer Should Know',
+        videoId: '2',
+        creatorName: 'DevGuru',
+        editorName: 'VideoEditor Pro',
+        clipUrl: 'https://youtube.com/watch?v=example2',
+        hashtags: '#javascript #tips #coding',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=300&h=200&fit=crop',
+        status: 'Pending',
+        views: 0,
+        earnings: 0,
+        submittedDate: '2024-07-30',
+        fileSize: '18.2 MB',
+        duration: '1:15'
+      }
+    ];
+  });
 
   const handleClipThis = (video: AvailableVideo) => {
     setSelectedVideo(video);
@@ -101,13 +126,27 @@ export const EditorDashboard = () => {
       id: Date.now().toString(),
       title: clipTitle,
       videoId: selectedVideo!.id,
+      creatorName: selectedVideo!.creator,
+      editorName: 'VideoEditor Pro', // This would come from user session
+      clipUrl,
+      hashtags,
+      thumbnailUrl: `https://images.unsplash.com/photo-${Date.now() % 5 === 0 ? '1461749280684-dccba630e2f6' : '1498050108023-c5249f4df085'}?w=300&h=200&fit=crop`,
       status: 'Pending',
       views: 0,
       earnings: 0,
-      submittedDate: new Date().toISOString().split('T')[0]
+      submittedDate: new Date().toISOString().split('T')[0],
+      fileSize: `${Math.floor(Math.random() * 30 + 10)}.${Math.floor(Math.random() * 9)} MB`,
+      duration: `${Math.floor(Math.random() * 2)}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`
     };
 
-    setSubmissions([newSubmission, ...submissions]);
+    const updatedSubmissions = [newSubmission, ...submissions];
+    setSubmissions(updatedSubmissions);
+    localStorage.setItem('editorSubmissions', JSON.stringify(updatedSubmissions));
+    
+    // Add to creator's pending clips
+    const creatorClips = JSON.parse(localStorage.getItem('creatorClips') || '[]');
+    creatorClips.push(newSubmission);
+    localStorage.setItem('creatorClips', JSON.stringify(creatorClips));
     
     toast({
       title: "Clip Submitted Successfully!",
@@ -227,22 +266,40 @@ export const EditorDashboard = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 {submissions.map((submission) => (
-                  <div key={submission.id} className="p-3 rounded-lg border border-white/10 bg-background/20">
-                    <h4 className="font-medium text-sm line-clamp-2 mb-2">
-                      {submission.title}
-                    </h4>
-                    <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
-                      <span>{submission.submittedDate}</span>
-                      <Badge 
-                        variant={submission.status === 'Approved' ? 'default' : 'secondary'}
-                        className="text-xs"
-                      >
-                        {submission.status}
-                      </Badge>
-                    </div>
-                    <div className="flex justify-between text-xs">
-                      <span>{submission.views.toLocaleString()} views</span>
-                      <span className="text-primary font-medium">₹{submission.earnings}</span>
+                  <div key={submission.id} className="p-4 rounded-lg border border-white/10 bg-background/20 hover:bg-background/30 transition-all">
+                    <div className="flex items-start gap-3">
+                      <img 
+                        src={submission.thumbnailUrl} 
+                        alt="Clip thumbnail"
+                        className="w-16 h-12 rounded object-cover"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-medium text-sm line-clamp-2 mb-1">
+                          {submission.title}
+                        </h4>
+                        <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
+                          <span>{submission.submittedDate}</span>
+                          <Badge 
+                            variant={
+                              submission.status === 'Approved' ? 'default' : 
+                              submission.status === 'Pending' ? 'secondary' : 
+                              'destructive'
+                            }
+                            className="text-xs"
+                          >
+                            {submission.status}
+                          </Badge>
+                        </div>
+                        <div className="flex justify-between text-xs">
+                          <span>{submission.views.toLocaleString()} views</span>
+                          <span className="text-primary font-medium">₹{submission.earnings}</span>
+                        </div>
+                        {submission.feedback && submission.status === 'Rejected' && (
+                          <div className="mt-2 p-2 bg-red-500/10 border border-red-500/20 rounded text-xs text-red-400">
+                            <strong>Feedback:</strong> {submission.feedback}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))}

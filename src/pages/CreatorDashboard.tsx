@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { Upload, Video, TrendingUp, Clock, Users } from 'lucide-react';
+import { ClipReviewDashboard } from '@/components/ClipReviewDashboard';
 import { toast } from '@/components/ui/use-toast';
 
 interface UploadedVideo {
@@ -198,6 +199,14 @@ export const CreatorDashboard = () => {
           </div>
         </div>
 
+        {/* Clip Review Section */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-orbitron font-bold gradient-text mb-6">
+            Clip Submissions Review
+          </h2>
+          <ClipReviewDashboard />
+        </div>
+
         {/* Uploaded Videos */}
         <div className="mt-12">
           <h2 className="text-2xl font-orbitron font-bold gradient-text mb-6">
@@ -205,7 +214,7 @@ export const CreatorDashboard = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {uploadedVideos.map((video) => (
-              <Card key={video.id} className="glass-card">
+              <Card key={video.id} className="glass-card hover:scale-105 transition-transform">
                 <CardContent className="p-4 space-y-3">
                   <h3 className="font-rajdhani font-semibold text-lg line-clamp-2">
                     {video.title}
