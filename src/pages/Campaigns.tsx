@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Search, Filter, TrendingUp, DollarSign, Clock } from 'lucide-react';
+import { Search, Filter, TrendingUp, IndianRupee, Clock } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -15,7 +15,7 @@ export const Campaigns = () => {
   const filters = [
     { id: 'all', label: 'All Campaigns', icon: null },
     { id: 'trending', label: 'Trending', icon: <TrendingUp className="h-4 w-4" /> },
-    { id: 'high-payout', label: 'High Payout', icon: <DollarSign className="h-4 w-4" /> },
+    { id: 'high-payout', label: 'High Payout', icon: <IndianRupee className="h-4 w-4" /> },
     { id: 'new', label: 'New', icon: <Clock className="h-4 w-4" /> },
   ];
 

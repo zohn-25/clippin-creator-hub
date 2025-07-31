@@ -1,10 +1,10 @@
-import { TrendingUp, Users, Shield, DollarSign, Clock, Star, Zap, Target, Check, Scissors } from 'lucide-react';
+import { TrendingUp, Users, Shield, IndianRupee, Clock, Star, Zap, Target, Check, Scissors } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 export const WhyChooseUs = () => {
   const features = [
     {
-      icon: <DollarSign className="h-8 w-8" />,
+      icon: <IndianRupee className="h-8 w-8" />,
       title: 'Performance-Based Payouts',
       description: 'Get paid for actual results - views, engagement, and conversions. No empty promises, just real performance.',
       highlight: '3x higher earnings'

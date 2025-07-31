@@ -1,13 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
-import { TrendingUp, Eye, DollarSign, Users } from 'lucide-react';
+import { TrendingUp, Eye, IndianRupee, Users } from 'lucide-react';
 
 export const CreatorInsights = () => {
   // Mock data for creator insights
   const stats = [
     { label: 'Total Views', value: '2.4M', icon: Eye, change: '+12%' },
     { label: 'Clips Created', value: '47', icon: Users, change: '+8%' },
-    { label: 'Total Earnings', value: '₹18,420', icon: DollarSign, change: '+15%' },
+    { label: 'Total Earnings', value: '₹18,420', icon: IndianRupee, change: '+15%' },
     { label: 'Avg. Performance', value: '84%', icon: TrendingUp, change: '+6%' }
   ];
 

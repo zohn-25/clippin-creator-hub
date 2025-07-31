@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, TrendingUp, DollarSign, Clock, Plus } from 'lucide-react';
+import { X, TrendingUp, IndianRupee, Clock, Plus } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { useToast } from '@/hooks/use-toast';
@@ -98,7 +98,7 @@ export const WalletModal = ({ isOpen, onClose, role }: WalletModalProps) => {
                         {formatCurrency(mockWalletData.creator.withdrawable)}
                       </p>
                     </div>
-                    <DollarSign className="h-8 w-8 text-primary" />
+                    <IndianRupee className="h-8 w-8 text-primary" />
                   </div>
                 </div>
 
@@ -178,7 +178,7 @@ export const WalletModal = ({ isOpen, onClose, role }: WalletModalProps) => {
                         {formatCurrency(mockWalletData.brand.availableBalance)}
                       </p>
                     </div>
-                    <DollarSign className="h-8 w-8 text-success" />
+                    <IndianRupee className="h-8 w-8 text-success" />
                   </div>
                 </div>
 

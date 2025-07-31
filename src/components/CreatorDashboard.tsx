@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TrendingUp, Clock, CheckCircle, XCircle, DollarSign } from 'lucide-react';
+import { TrendingUp, Clock, CheckCircle, XCircle, IndianRupee } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { mockCampaigns, mockWalletData } from '@/data/mockData';
@@ -18,7 +18,7 @@ export const CreatorDashboard = () => {
     {
       title: 'Total Earnings',
       value: `₹${mockWalletData.creator.earnings.toLocaleString()}`,
-      icon: <DollarSign className="h-6 w-6" />,
+      icon: <IndianRupee className="h-6 w-6" />,
       color: 'text-success',
     },
     {

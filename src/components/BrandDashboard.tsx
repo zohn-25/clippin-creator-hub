@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TrendingUp, Users, DollarSign, BarChart3, Eye, ThumbsUp, Share } from 'lucide-react';
+import { TrendingUp, Users, IndianRupee, BarChart3, Eye, ThumbsUp, Share } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { mockCampaigns, mockWalletData } from '@/data/mockData';

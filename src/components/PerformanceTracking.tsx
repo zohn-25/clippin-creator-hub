@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
-import { Eye, DollarSign, Clock, MessageSquare } from 'lucide-react';
+import { Eye, IndianRupee, Clock, MessageSquare } from 'lucide-react';
 import { mockClipSubmissions } from '@/data/mockData';
 
 export const PerformanceTracking = () => {
@@ -29,7 +29,7 @@ export const PerformanceTracking = () => {
         <Card className="glass-card border-white/10">
           <CardContent className="p-4 text-center">
             <div className="flex justify-center mb-2">
-              <DollarSign className="h-6 w-6 text-primary" />
+              <IndianRupee className="h-6 w-6 text-primary" />
             </div>
             <p className="text-lg font-bold gradient-text">
               ₹{totalEarnings.toLocaleString()}

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Calendar, DollarSign, Tag, Building } from 'lucide-react';
+import { Calendar, IndianRupee, Tag, Building } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { ApplicationModal } from './ApplicationModal';
@@ -80,7 +80,7 @@ export const CampaignCard = ({ campaign, onApply }: CampaignCardProps) => {
           </div>
 
           <div className="flex items-center text-sm">
-            <DollarSign className="h-4 w-4 mr-2 text-primary" />
+            <IndianRupee className="h-4 w-4 mr-2 text-primary" />
             <span className="font-semibold text-primary">
               ₹{campaign.payoutPer1K}/1K views
             </span>
