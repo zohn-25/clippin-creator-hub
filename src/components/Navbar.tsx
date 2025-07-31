@@ -80,7 +80,7 @@ export const Navbar = () => {
                 className="glow-button bg-gradient-card border-white/20 hover:border-primary/50"
               >
                 <Wallet className="h-4 w-4 mr-2" />
-                💰
+                Wallet
               </Button>
 
               {/* Profile Dropdown */}
