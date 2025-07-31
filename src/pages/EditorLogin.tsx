@@ -42,11 +42,6 @@ export const EditorLogin = () => {
     }, 1500);
   };
 
-  const handleDemoLogin = () => {
-    setEmail('editor@demo.com');
-    setPassword('demo123');
-  };
-
   return (
     <div className="min-h-screen pt-24 pb-12 flex items-center justify-center">
       <div className="container mx-auto px-4 max-w-md">
@@ -136,27 +131,8 @@ export const EditorLogin = () => {
               )}
             </Button>
 
-            <div className="text-center">
-              <Button
-                variant="outline"
-                onClick={handleDemoLogin}
-                className="w-full border-white/20 bg-background/50"
-              >
-                Use Demo Credentials
-              </Button>
-            </div>
-
             <div className="text-center text-sm text-muted-foreground">
               <p>Don't have an account? <span className="text-primary cursor-pointer hover:underline">Sign up</span></p>
-            </div>
-
-            {/* Demo Info */}
-            <div className="mt-6 p-4 rounded-lg bg-primary/5 border border-primary/20">
-              <h4 className="text-sm font-medium text-primary mb-2">Demo Account Info:</h4>
-              <p className="text-xs text-muted-foreground">
-                Email: editor@demo.com<br />
-                Password: demo123
-              </p>
             </div>
           </CardContent>
         </Card>
