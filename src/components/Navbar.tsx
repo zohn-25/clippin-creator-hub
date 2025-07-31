@@ -19,6 +19,8 @@ export const Navbar = () => {
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/campaigns', label: 'Campaigns' },
+    { path: '/why-choose-us', label: 'Why Choose Us' },
+    { path: '/contact-us', label: 'Contact Us' },
   ];
 
   return (
