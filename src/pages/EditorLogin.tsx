@@ -132,7 +132,10 @@ export const EditorLogin = () => {
             </Button>
 
             <div className="text-center text-sm text-muted-foreground">
-              <p>Don't have an account? <span className="text-primary cursor-pointer hover:underline">Sign up</span></p>
+              <p>Don't have an account? <span 
+                className="text-primary cursor-pointer hover:underline"
+                onClick={() => navigate('/editor-signup')}
+              >Sign up</span></p>
             </div>
           </CardContent>
         </Card>

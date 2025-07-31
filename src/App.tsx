@@ -11,6 +11,8 @@ import { CreatorDashboard } from "./pages/CreatorDashboard";
 import { EditorDashboard } from "./pages/EditorDashboard";
 import { CreatorLogin } from "./pages/CreatorLogin";
 import { EditorLogin } from "./pages/EditorLogin";
+import { CreatorSignup } from "./pages/CreatorSignup";
+import { EditorSignup } from "./pages/EditorSignup";
 import { Dashboard } from "./pages/Dashboard";
 import { BrandLogin } from "./pages/BrandLogin";
 import { ContactUs } from "./pages/ContactUs";
@@ -35,6 +37,8 @@ const App = () => (
             <Route path="/clip-hub" element={<ClipHubRoleSelection />} />
             <Route path="/creator-login" element={<CreatorLogin />} />
             <Route path="/editor-login" element={<EditorLogin />} />
+            <Route path="/creator-signup" element={<CreatorSignup />} />
+            <Route path="/editor-signup" element={<EditorSignup />} />
             <Route path="/creator-dashboard" element={<CreatorDashboard />} />
             <Route path="/editor-dashboard" element={<EditorDashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
