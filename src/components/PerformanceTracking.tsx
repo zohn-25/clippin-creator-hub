@@ -23,146 +23,89 @@ export const PerformanceTracking = () => {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="text-center space-y-2">
-        <h2 className="text-3xl font-orbitron font-bold gradient-text">
-          My Clipping Earnings
-        </h2>
-        <p className="text-muted-foreground">
-          Track your clip performance and earnings
-        </p>
-      </div>
-
+    <div className="space-y-4">
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="glass-card">
-          <CardContent className="p-6 text-center">
-            <div className="flex justify-center mb-3">
-              <DollarSign className="h-8 w-8 text-primary" />
+      <div className="grid grid-cols-1 gap-4">
+        <Card className="glass-card border-white/10">
+          <CardContent className="p-4 text-center">
+            <div className="flex justify-center mb-2">
+              <DollarSign className="h-6 w-6 text-primary" />
             </div>
-            <p className="text-2xl font-orbitron font-bold gradient-text">
+            <p className="text-lg font-bold gradient-text">
               ₹{totalEarnings.toLocaleString()}
             </p>
-            <p className="text-sm text-muted-foreground">Total Earnings</p>
+            <p className="text-xs text-muted-foreground">Total Earnings</p>
           </CardContent>
         </Card>
 
-        <Card className="glass-card">
-          <CardContent className="p-6 text-center">
-            <div className="flex justify-center mb-3">
-              <Eye className="h-8 w-8 text-primary" />
+        <Card className="glass-card border-white/10">
+          <CardContent className="p-4 text-center">
+            <div className="flex justify-center mb-2">
+              <Eye className="h-6 w-6 text-primary" />
             </div>
-            <p className="text-2xl font-orbitron font-bold gradient-text">
+            <p className="text-lg font-bold gradient-text">
               {totalViews.toLocaleString()}
             </p>
-            <p className="text-sm text-muted-foreground">Total Views</p>
+            <p className="text-xs text-muted-foreground">Total Views</p>
           </CardContent>
         </Card>
 
-        <Card className="glass-card">
-          <CardContent className="p-6 text-center">
-            <div className="flex justify-center mb-3">
-              <Clock className="h-8 w-8 text-primary" />
+        <Card className="glass-card border-white/10">
+          <CardContent className="p-4 text-center">
+            <div className="flex justify-center mb-2">
+              <Clock className="h-6 w-6 text-primary" />
             </div>
-            <p className="text-2xl font-orbitron font-bold gradient-text">
+            <p className="text-lg font-bold gradient-text">
               {approvedClips}
             </p>
-            <p className="text-sm text-muted-foreground">Approved Clips</p>
+            <p className="text-xs text-muted-foreground">Approved Clips</p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Submissions Table */}
-      <Card className="glass-card">
-        <CardHeader>
-          <CardTitle className="text-xl font-orbitron gradient-text">
-            My Submissions
-          </CardTitle>
+      {/* Recent Submissions */}
+      <Card className="glass-card border-white/10">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-sm font-rajdhani">Recent Submissions</CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {mockClipSubmissions.map((submission) => (
+        <CardContent className="p-4 pt-0">
+          <div className="space-y-3">
+            {mockClipSubmissions.slice(0, 3).map((submission) => (
               <div
                 key={submission.id}
-                className="bg-gradient-card p-4 rounded-lg border border-white/10 hover:border-white/20 transition-all"
+                className="flex items-center justify-between text-sm"
               >
-                <div className="flex flex-col md:flex-row md:items-center gap-4">
-                  {/* Thumbnail and Info */}
-                  <div className="flex gap-3 flex-1">
-                    <img
-                      src={submission.thumbnailUrl}
-                      alt={submission.clipTitle}
-                      className="w-16 h-12 object-cover rounded"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-rajdhani font-semibold text-sm line-clamp-1">
-                        {submission.clipTitle}
-                      </h3>
-                      <p className="text-xs text-muted-foreground line-clamp-1">
-                        From: {submission.rawContentTitle}
-                      </p>
-                      <div className="flex flex-wrap gap-1 mt-1">
-                        {submission.hashtags.slice(0, 3).map((tag, index) => (
-                          <Badge key={index} variant="outline" className="text-xs">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Stats */}
-                  <div className="flex gap-4 text-sm">
-                    <div className="text-center">
-                      <div className="flex items-center gap-1 text-muted-foreground">
-                        <Eye className="h-3 w-3" />
-                        {submission.views.toLocaleString()}
-                      </div>
-                      <p className="text-xs text-muted-foreground">Views</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="flex items-center gap-1 text-primary font-medium">
-                        <DollarSign className="h-3 w-3" />
-                        ₹{submission.earnings}
-                      </div>
-                      <p className="text-xs text-muted-foreground">Earned</p>
-                    </div>
-                  </div>
-
-                  {/* Status and Actions */}
-                  <div className="flex items-center gap-3">
-                    <Badge className={getStatusColor(submission.status)}>
-                      {submission.status}
-                    </Badge>
-                    {submission.feedback && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="bg-background/50 border-white/20"
-                      >
-                        <MessageSquare className="h-3 w-3 mr-1" />
-                        Feedback
-                      </Button>
-                    )}
+                <div className="flex items-center gap-3 flex-1">
+                  <img
+                    src={submission.thumbnailUrl}
+                    alt={submission.clipTitle}
+                    className="w-10 h-8 object-cover rounded"
+                  />
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium truncate">{submission.clipTitle}</p>
+                    <p className="text-xs text-muted-foreground">{submission.views.toLocaleString()} views</p>
                   </div>
                 </div>
-
-                {/* Feedback */}
-                {submission.feedback && (
-                  <div className="mt-3 pt-3 border-t border-white/10">
-                    <p className="text-xs text-muted-foreground">
-                      <strong>Feedback:</strong> {submission.feedback}
-                    </p>
-                  </div>
-                )}
+                <div className="text-right">
+                  <p className="font-medium text-primary">₹{submission.earnings}</p>
+                  <Badge 
+                    variant="secondary" 
+                    className={`text-xs ${
+                      submission.status === 'approved' ? 'bg-green-500/20 text-green-300' :
+                      submission.status === 'pending' ? 'bg-yellow-500/20 text-yellow-300' :
+                      'bg-red-500/20 text-red-300'
+                    }`}
+                  >
+                    {submission.status}
+                  </Badge>
+                </div>
               </div>
             ))}
           </div>
 
           {mockClipSubmissions.length === 0 && (
-            <div className="text-center py-8">
-              <p className="text-muted-foreground">No submissions yet. Start clipping content to see your performance here!</p>
+            <div className="text-center py-4">
+              <p className="text-xs text-muted-foreground">No submissions yet.</p>
             </div>
           )}
         </CardContent>

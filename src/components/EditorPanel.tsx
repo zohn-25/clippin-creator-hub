@@ -30,15 +30,6 @@ export const EditorPanel = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="text-center space-y-2">
-        <h2 className="text-3xl font-orbitron font-bold gradient-text">
-          Available Content to Clip
-        </h2>
-        <p className="text-muted-foreground">
-          Select raw content and create engaging clips to earn money
-        </p>
-      </div>
 
       {/* Filters */}
       <div className="flex flex-col md:flex-row gap-4">

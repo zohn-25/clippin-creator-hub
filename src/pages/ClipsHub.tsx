@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CreatorPanel } from '@/components/CreatorPanel';
 import { EditorPanel } from '@/components/EditorPanel';
 import { PerformanceTracking } from '@/components/PerformanceTracking';
-import { useRole } from '@/hooks/useRole';
+import { CreatorInsights } from '@/components/CreatorInsights';
+import { Upload, Scissors, TrendingUp, Users } from 'lucide-react';
 
 export const ClipsHub = () => {
-  const { role } = useRole();
-  const [activeTab, setActiveTab] = useState(role === 'creator' ? 'upload' : 'browse');
+  const [activeSection, setActiveSection] = useState<'creator' | 'editor'>('creator');
 
   return (
     <div className="min-h-screen pt-24 pb-12">
@@ -22,34 +23,119 @@ export const ClipsHub = () => {
           </p>
         </div>
 
-        {/* Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 glass-card max-w-md mx-auto">
-            <TabsTrigger value="upload" className="data-[state=active]:bg-primary/20">
-              Upload Content
-            </TabsTrigger>
-            <TabsTrigger value="browse" className="data-[state=active]:bg-primary/20">
-              Browse & Clip
-            </TabsTrigger>
-            <TabsTrigger value="earnings" className="data-[state=active]:bg-primary/20">
-              My Earnings
-            </TabsTrigger>
-          </TabsList>
-
-          <div className="mt-8">
-            <TabsContent value="upload" className="space-y-6">
-              <CreatorPanel />
-            </TabsContent>
-
-            <TabsContent value="browse" className="space-y-6">
-              <EditorPanel />
-            </TabsContent>
-
-            <TabsContent value="earnings" className="space-y-6">
-              <PerformanceTracking />
-            </TabsContent>
+        {/* Section Selector */}
+        <div className="flex justify-center mb-8">
+          <div className="glass-card p-1 rounded-lg flex">
+            <Button
+              variant={activeSection === 'creator' ? 'default' : 'ghost'}
+              onClick={() => setActiveSection('creator')}
+              className="flex items-center gap-2 px-6 py-3"
+            >
+              <Users className="h-4 w-4" />
+              Content Creators
+            </Button>
+            <Button
+              variant={activeSection === 'editor' ? 'default' : 'ghost'}
+              onClick={() => setActiveSection('editor')}
+              className="flex items-center gap-2 px-6 py-3"
+            >
+              <Scissors className="h-4 w-4" />
+              Clip Editors
+            </Button>
           </div>
-        </Tabs>
+        </div>
+
+        {/* Creator Section */}
+        {activeSection === 'creator' && (
+          <div className="space-y-8">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-orbitron font-bold gradient-text mb-2">
+                Content Creator Hub
+              </h2>
+              <p className="text-muted-foreground">
+                Upload your raw content and track performance of created clips
+              </p>
+            </div>
+            
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* Upload Section */}
+              <div className="space-y-6">
+                <Card className="glass-card">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 gradient-text">
+                      <Upload className="h-5 w-5" />
+                      Upload Raw Content
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CreatorPanel />
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Insights Section */}
+              <div className="space-y-6">
+                <Card className="glass-card">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 gradient-text">
+                      <TrendingUp className="h-5 w-5" />
+                      Content Insights
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CreatorInsights />
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Editor Section */}
+        {activeSection === 'editor' && (
+          <div className="space-y-8">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-orbitron font-bold gradient-text mb-2">
+                Clip Editor Hub
+              </h2>
+              <p className="text-muted-foreground">
+                Browse content, create clips, and track your earnings
+              </p>
+            </div>
+            
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Browse & Clip Section */}
+              <div className="lg:col-span-2 space-y-6">
+                <Card className="glass-card">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 gradient-text">
+                      <Scissors className="h-5 w-5" />
+                      Browse & Create Clips
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <EditorPanel />
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Earnings Section */}
+              <div className="space-y-6">
+                <Card className="glass-card">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 gradient-text">
+                      <TrendingUp className="h-5 w-5" />
+                      My Earnings
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <PerformanceTracking />
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

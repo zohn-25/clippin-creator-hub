@@ -39,17 +39,7 @@ export const CreatorPanel = () => {
   };
 
   return (
-    <Card className="glass-card">
-      <CardHeader>
-        <CardTitle className="text-2xl font-orbitron gradient-text flex items-center gap-2">
-          <Plus className="h-6 w-6" />
-          Upload Raw Content
-        </CardTitle>
-        <p className="text-muted-foreground">
-          Share your long-form content for editors to create engaging clips
-        </p>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <div className="space-y-6">
         {/* Content URL */}
         <div className="space-y-2">
           <Label htmlFor="contentUrl" className="text-sm font-rajdhani font-medium">
@@ -137,7 +127,6 @@ export const CreatorPanel = () => {
           <Upload className="h-5 w-5 mr-2" />
           Upload to Clip Hub
         </Button>
-      </CardContent>
-    </Card>
+    </div>
   );
 };
