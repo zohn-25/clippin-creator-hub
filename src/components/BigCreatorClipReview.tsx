@@ -41,7 +41,146 @@ export const BigCreatorClipReview = () => {
 
   useEffect(() => {
     // Load clips from localStorage
-    const creatorClips = JSON.parse(localStorage.getItem('creatorClips') || '[]') as ClipSubmission[];
+    let creatorClips = JSON.parse(localStorage.getItem('creatorClips') || '[]') as ClipSubmission[];
+    
+    // Add sample submissions if none exist
+    if (creatorClips.length === 0) {
+      const sampleClips: ClipSubmission[] = [
+        {
+          id: 'clip_001',
+          title: 'React Hooks Explained in 60 Seconds',
+          videoId: 'video_001',
+          creatorName: 'TechGuru',
+          editorName: 'Alex Sharma',
+          clipUrl: 'https://example.com/clip1',
+          hashtags: '#react #hooks #javascript #webdev #programming',
+          thumbnailUrl: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop',
+          status: 'Pending',
+          views: 0,
+          earnings: 0,
+          submittedDate: '2024-07-30',
+          fileSize: '15.2 MB',
+          duration: '1:02'
+        },
+        {
+          id: 'clip_002',
+          title: 'JavaScript Async/Await Best Practices',
+          videoId: 'video_001',
+          creatorName: 'TechGuru',
+          editorName: 'Priya Patel',
+          clipUrl: 'https://example.com/clip2',
+          hashtags: '#javascript #async #await #promises #coding',
+          thumbnailUrl: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop',
+          status: 'Pending',
+          views: 0,
+          earnings: 0,
+          submittedDate: '2024-07-29',
+          fileSize: '22.8 MB',
+          duration: '2:15'
+        },
+        {
+          id: 'clip_003',
+          title: 'CSS Grid Layout Quick Tutorial',
+          videoId: 'video_002',
+          creatorName: 'TechGuru',
+          editorName: 'Rahul Kumar',
+          clipUrl: 'https://example.com/clip3',
+          hashtags: '#css #grid #layout #webdesign #frontend',
+          thumbnailUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop',
+          status: 'Approved',
+          views: 12450,
+          earnings: 1245,
+          submittedDate: '2024-07-28',
+          fileSize: '18.5 MB',
+          duration: '1:45'
+        },
+        {
+          id: 'clip_004',
+          title: 'TypeScript Interface vs Type',
+          videoId: 'video_001',
+          creatorName: 'TechGuru',
+          editorName: 'Sneha Singh',
+          clipUrl: 'https://example.com/clip4',
+          hashtags: '#typescript #interface #type #programming',
+          thumbnailUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=300&fit=crop',
+          status: 'Pending',
+          views: 0,
+          earnings: 0,
+          submittedDate: '2024-07-30',
+          fileSize: '12.3 MB',
+          duration: '0:58'
+        },
+        {
+          id: 'clip_005',
+          title: 'Node.js Performance Tips',
+          videoId: 'video_002',
+          creatorName: 'TechGuru',
+          editorName: 'Arjun Mehta',
+          clipUrl: 'https://example.com/clip5',
+          hashtags: '#nodejs #performance #backend #javascript',
+          thumbnailUrl: 'https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=400&h=300&fit=crop',
+          status: 'Rejected',
+          views: 0,
+          earnings: 0,
+          submittedDate: '2024-07-27',
+          feedback: 'Audio quality needs improvement. Please use better microphone setup.',
+          fileSize: '25.7 MB',
+          duration: '2:30'
+        },
+        {
+          id: 'clip_006',
+          title: 'React State Management Simplified',
+          videoId: 'video_001',
+          creatorName: 'TechGuru',
+          editorName: 'Kavya Reddy',
+          clipUrl: 'https://example.com/clip6',
+          hashtags: '#react #state #management #redux #context',
+          thumbnailUrl: 'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=400&h=300&fit=crop',
+          status: 'Approved',
+          views: 8920,
+          earnings: 892,
+          submittedDate: '2024-07-26',
+          fileSize: '19.1 MB',
+          duration: '1:38'
+        },
+        {
+          id: 'clip_007',
+          title: 'MongoDB Aggregation Pipeline',
+          videoId: 'video_002',
+          creatorName: 'TechGuru',
+          editorName: 'Dev Sharma',
+          clipUrl: 'https://example.com/clip7',
+          hashtags: '#mongodb #database #aggregation #nosql',
+          thumbnailUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop',
+          status: 'Pending',
+          views: 0,
+          earnings: 0,
+          submittedDate: '2024-07-31',
+          fileSize: '31.2 MB',
+          duration: '3:12'
+        },
+        {
+          id: 'clip_008',
+          title: 'API Design Best Practices',
+          videoId: 'video_002',
+          creatorName: 'TechGuru',
+          editorName: 'Ravi Gupta',
+          clipUrl: 'https://example.com/clip8',
+          hashtags: '#api #rest #design #backend #bestpractices',
+          thumbnailUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop',
+          status: 'Approved',
+          views: 15670,
+          earnings: 1567,
+          submittedDate: '2024-07-25',
+          fileSize: '27.4 MB',
+          duration: '2:45'
+        }
+      ];
+
+      localStorage.setItem('creatorClips', JSON.stringify(sampleClips));
+      localStorage.setItem('editorSubmissions', JSON.stringify(sampleClips));
+      creatorClips = sampleClips;
+    }
     
     setAllClips(creatorClips);
     setPendingClips(creatorClips.filter(clip => clip.status === 'Pending'));
