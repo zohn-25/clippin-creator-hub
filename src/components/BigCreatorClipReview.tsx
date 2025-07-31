@@ -234,10 +234,10 @@ export const BigCreatorClipReview = () => {
       description: `"${clip.title}" has been approved and moved to approved clips.`,
     });
     
-    // Simulate earnings update
+    // Show approval confirmation
     toast({
-      title: "Earnings Updated",
-      description: "Your earnings have been updated with the new approved clip.",
+      title: "Clip Published Successfully",
+      description: "The clip is now live and ready for viewers to watch.",
     });
 
     // Close preview modal if open
