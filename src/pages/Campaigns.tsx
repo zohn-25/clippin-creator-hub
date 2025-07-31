@@ -76,9 +76,11 @@ export const Campaigns = () => {
                 <div className="text-lg font-rajdhani font-bold mb-2 group-hover:scale-110 transition-transform">
                   {category}
                 </div>
-                <p className="text-xs text-muted-foreground">
-                  {campaigns.filter(c => c.category.toLowerCase() === category.toLowerCase()).length} campaigns
-                </p>
+                {campaigns.filter(c => c.category.toLowerCase() === category.toLowerCase()).length > 0 && (
+                  <p className="text-xs text-muted-foreground">
+                    {campaigns.filter(c => c.category.toLowerCase() === category.toLowerCase()).length} campaigns
+                  </p>
+                )}
               </div>
             ))}
           </div>
