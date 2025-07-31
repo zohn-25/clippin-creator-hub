@@ -145,58 +145,60 @@ export const Home = () => {
           
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Model 1: Creators & Brands */}
-            <Card className="glass-card p-8 hover:scale-105 transition-transform">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-orbitron font-bold gradient-text mb-2">
-                  Creator-Brand Campaigns
-                </h3>
-                <p className="text-muted-foreground">
-                  Partner with brands for sponsored content campaigns
-                </p>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-primary font-bold text-xs">1</span>
+            <HoverCard3D>
+              <Card className="glass-card p-8 card-3d">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="h-8 w-8 text-primary" />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-primary">Brands Post Campaigns</h4>
-                    <p className="text-sm text-muted-foreground">Companies create campaigns with specific requirements and budgets</p>
+                  <h3 className="text-2xl font-orbitron font-bold gradient-text mb-2">
+                    Creator-Brand Campaigns
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Partner with brands for sponsored content campaigns
+                  </p>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-primary font-bold text-xs">1</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-primary">Brands Post Campaigns</h4>
+                      <p className="text-sm text-muted-foreground">Companies create campaigns with specific requirements and budgets</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-primary font-bold text-xs">2</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-primary">Creators Apply</h4>
+                      <p className="text-sm text-muted-foreground">Content creators browse and apply to relevant campaigns</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-primary font-bold text-xs">3</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-primary">Create & Earn</h4>
+                      <p className="text-sm text-muted-foreground">Create sponsored content and earn ₹50-500/1K views</p>
+                    </div>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-primary font-bold text-xs">2</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-primary">Creators Apply</h4>
-                    <p className="text-sm text-muted-foreground">Content creators browse and apply to relevant campaigns</p>
+                <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-muted-foreground">Typical Earnings:</span>
+                    <span className="text-primary font-bold">₹5,000 - ₹50,000 per campaign</span>
                   </div>
                 </div>
-                
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-primary font-bold text-xs">3</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-primary">Create & Earn</h4>
-                    <p className="text-sm text-muted-foreground">Create sponsored content and earn ₹50-500/1K views</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-muted-foreground">Typical Earnings:</span>
-                  <span className="text-primary font-bold">₹5,000 - ₹50,000 per campaign</span>
-                </div>
-              </div>
-            </Card>
+              </Card>
+            </HoverCard3D>
 
             {/* Model 2: Big Creators & Editors */}
             <Card className="glass-card p-8 hover:scale-105 transition-transform">
