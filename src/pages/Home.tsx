@@ -1,6 +1,8 @@
 import { ArrowRight, Play, Users, TrendingUp, Star, Scissors } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Button3D } from '@/components/Button3D';
+import { HoverCard3D } from '@/components/HoverCard3D';
 import { Card } from '@/components/ui/card';
 import heroImage from '@/assets/hero-bg.jpg';
 
@@ -57,38 +59,36 @@ export const Home = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link to="/creator-login">
-                <Button 
-                  size="lg" 
-                  className="glow-button bg-gradient-primary text-lg px-8 py-4"
-                >
+                <Button3D className="glow-button bg-gradient-primary text-lg px-8 py-4">
                   <Users className="mr-2 h-5 w-5" />
                   Login as Creator
-                </Button>
+                </Button3D>
               </Link>
               
               <Link to="/brand-login">
-                <Button 
+                <Button3D 
                   variant="outline" 
-                  size="lg" 
                   className="bg-white/10 border-white/20 text-white hover:bg-white/20 text-lg px-8 py-4"
                 >
                   <TrendingUp className="mr-2 h-5 w-5" />
                   Login as Brand
-                </Button>
+                </Button3D>
               </Link>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {stats.map((stat, index) => (
-                <div key={index} className="glass-card p-4 animate-float" style={{ animationDelay: `${index * 0.2}s` }}>
-                  <div className="text-2xl md:text-3xl font-orbitron font-bold gradient-text mb-1">
-                    {stat.value}
+                <HoverCard3D key={index}>
+                  <div className="glass-card p-4 animate-float card-3d h-full" style={{ animationDelay: `${index * 0.2}s` }}>
+                    <div className="text-2xl md:text-3xl font-orbitron font-bold gradient-text mb-1">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-white/80 font-rajdhani">
+                      {stat.label}
+                    </div>
                   </div>
-                  <div className="text-sm text-white/80 font-rajdhani">
-                    {stat.label}
-                  </div>
-                </div>
+                </HoverCard3D>
               ))}
             </div>
           </div>
@@ -109,20 +109,19 @@ export const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div 
-                key={index} 
-                className="glass-card p-8 text-center hover:scale-105 transition-transform duration-300"
-              >
-                <div className="text-primary mb-4 flex justify-center">
-                  {feature.icon}
+              <HoverCard3D key={index}>
+                <div className="glass-card p-8 text-center card-3d h-full">
+                  <div className="text-primary mb-4 flex justify-center">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-orbitron font-semibold mb-4">
+                    {feature.title}
+                  </h3>
+                  <p className="text-muted-foreground">
+                    {feature.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-orbitron font-semibold mb-4">
-                  {feature.title}
-                </h3>
-                <p className="text-muted-foreground">
-                  {feature.description}
-                </p>
-              </div>
+              </HoverCard3D>
             ))}
           </div>
         </div>
@@ -359,10 +358,10 @@ export const Home = () => {
               Join thousands of creators already earning performance-based payouts
             </p>
             <Link to="/campaigns">
-              <Button size="lg" className="glow-button bg-gradient-primary text-lg px-12 py-4">
+              <Button3D className="glow-button bg-gradient-primary text-lg px-12 py-4">
                 Start Creating Today
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              </Button3D>
             </Link>
           </div>
         </div>
