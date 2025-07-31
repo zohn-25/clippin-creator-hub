@@ -60,7 +60,9 @@ export const WalletModal = ({ isOpen, onClose, role }: WalletModalProps) => {
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-orbitron font-bold gradient-text">
-              {role === 'creator' ? 'Creator Wallet' : 'Brand Wallet'}
+              {role === 'creator' ? 'Creator Wallet' : 
+               role === 'brand' ? 'Brand Wallet' :
+               role === 'big-creator' ? 'Big Creator Wallet' : 'Editor Wallet'}
             </h2>
             <Button
               variant="ghost"
@@ -72,9 +74,9 @@ export const WalletModal = ({ isOpen, onClose, role }: WalletModalProps) => {
             </Button>
           </div>
 
-          {role === 'creator' ? (
+          {(role === 'creator' || role === 'editor' || role === 'big-creator') ? (
             <>
-              {/* Creator Wallet Stats */}
+              {/* Creator/Editor/Big Creator Wallet Stats */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <div className="glass-card p-4">
                   <div className="flex items-center justify-between">

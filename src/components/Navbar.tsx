@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Wallet, User, ChevronDown, Zap } from 'lucide-react';
+import { Wallet, User, ChevronDown, Zap, Video, Edit } from 'lucide-react';
 import { useRole } from '@/hooks/useRole';
 import { WalletModal } from './WalletModal';
 import { Button } from './ui/button';
@@ -15,6 +15,22 @@ export const Navbar = () => {
   const [isWalletOpen, setIsWalletOpen] = useState(false);
   const { role, switchRole } = useRole();
   const location = useLocation();
+
+  const roleConfig = {
+    creator: { icon: User, label: 'Creator', profileName: 'Creator Profile' },
+    brand: { icon: User, label: 'Brand', profileName: 'Brand Profile' },
+    'big-creator': { icon: Video, label: 'Big Creator', profileName: 'Big Creator Profile' },
+    editor: { icon: Edit, label: 'Editor', profileName: 'Editor Profile' }
+  };
+
+  const currentRoleConfig = roleConfig[role];
+
+  const getNextRole = () => {
+    const roles: (keyof typeof roleConfig)[] = ['creator', 'brand', 'big-creator', 'editor'];
+    const currentIndex = roles.indexOf(role);
+    const nextIndex = (currentIndex + 1) % roles.length;
+    return roles[nextIndex];
+  };
 
   const navLinks = [
     { path: '/', label: 'Home' },
@@ -75,23 +91,35 @@ export const Navbar = () => {
                     size="sm"
                     className="bg-gradient-card border-white/20 hover:border-primary/50"
                   >
-                    <User className="h-4 w-4 mr-2" />
-                    <span className="capitalize">{role}</span>
+                    <currentRoleConfig.icon className="h-4 w-4 mr-2" />
+                    <span className="hidden sm:inline">{currentRoleConfig.profileName}</span>
+                    <span className="sm:hidden">{currentRoleConfig.label}</span>
                     <ChevronDown className="h-4 w-4 ml-2" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="glass-card">
-                  <DropdownMenuItem
-                    onClick={() => switchRole(role === 'creator' ? 'brand' : 'creator')}
-                  >
-                    Switch to {role === 'creator' ? 'Brand' : 'Creator'}
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    Settings
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    Logout
-                  </DropdownMenuItem>
+                <DropdownMenuContent align="end" className="glass-card w-56">
+                  <div className="px-2 py-1.5 text-sm font-medium text-foreground/60">
+                    Switch Role
+                  </div>
+                  {Object.entries(roleConfig).map(([roleKey, config]) => (
+                    <DropdownMenuItem
+                      key={roleKey}
+                      onClick={() => switchRole(roleKey as any)}
+                      className={`flex items-center ${role === roleKey ? 'bg-accent' : ''}`}
+                    >
+                      <config.icon className="h-4 w-4 mr-2" />
+                      <span>{config.label}</span>
+                      {role === roleKey && <span className="ml-auto text-primary">✓</span>}
+                    </DropdownMenuItem>
+                  ))}
+                  <div className="border-t border-border/50 mt-1 pt-1">
+                    <DropdownMenuItem>
+                      Settings
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      Logout
+                    </DropdownMenuItem>
+                  </div>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>

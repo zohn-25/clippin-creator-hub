@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export type UserRole = 'creator' | 'brand';
+export type UserRole = 'creator' | 'brand' | 'big-creator' | 'editor';
 
 export const useRole = () => {
   const [role, setRole] = useState<UserRole>(() => {
