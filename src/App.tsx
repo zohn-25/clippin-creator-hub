@@ -20,6 +20,7 @@ import { WhyChooseUs } from "./pages/WhyChooseUs";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { BackgroundParticles } from "./components/BackgroundParticles";
+import { SmoothCursor } from "./components/SmoothCursor";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <SmoothCursor />
         <BackgroundParticles />
         <div className="min-h-screen bg-gradient-bg relative z-10">
           <Navbar />
