@@ -163,9 +163,9 @@ export const EditorDashboard = () => {
           </Card>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-2 gap-8">
           {/* Available Videos */}
-          <div className="lg:col-span-2">
+          <div>
             <Card className="glass-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 gradient-text">
@@ -174,7 +174,7 @@ export const EditorDashboard = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
                   {availableVideos.map((video) => (
                     <Card key={video.id} className="border border-white/10 bg-background/30">
                       <CardContent className="p-4 space-y-3">
@@ -249,6 +249,128 @@ export const EditorDashboard = () => {
               </CardContent>
             </Card>
           </div>
+        </div>
+
+        {/* Earnings Tracking Section */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-orbitron font-bold gradient-text mb-6">
+            Earnings Dashboard
+          </h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            {/* Earnings Overview Cards */}
+            <Card className="glass-card">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-muted-foreground">Total Earnings</p>
+                    <p className="text-2xl font-bold text-primary">₹{totalEarnings}</p>
+                  </div>
+                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <TrendingUp className="h-6 w-6 text-primary" />
+                  </div>
+                </div>
+                <div className="mt-4 flex items-center text-xs text-muted-foreground">
+                  <span className="text-green-500">+12.5%</span>
+                  <span className="ml-1">from last month</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="glass-card">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-muted-foreground">This Month</p>
+                    <p className="text-2xl font-bold text-primary">₹{Math.floor(totalEarnings * 0.3)}</p>
+                  </div>
+                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <TrendingUp className="h-6 w-6 text-primary" />
+                  </div>
+                </div>
+                <div className="mt-4 flex items-center text-xs text-muted-foreground">
+                  <span className="text-green-500">+8.2%</span>
+                  <span className="ml-1">from last month</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="glass-card">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-muted-foreground">Pending Payout</p>
+                    <p className="text-2xl font-bold text-primary">₹{Math.floor(totalEarnings * 0.2)}</p>
+                  </div>
+                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Clock className="h-6 w-6 text-primary" />
+                  </div>
+                </div>
+                <div className="mt-4 text-xs text-muted-foreground">
+                  Next payout: 1st Aug
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Detailed Earnings Table */}
+          <Card className="glass-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 gradient-text">
+                <TrendingUp className="h-5 w-5" />
+                Clip Performance & Earnings
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-white/10">
+                      <th className="text-left py-3 px-2 text-sm font-medium text-muted-foreground">Clip Title</th>
+                      <th className="text-right py-3 px-2 text-sm font-medium text-muted-foreground">Views</th>
+                      <th className="text-right py-3 px-2 text-sm font-medium text-muted-foreground">Rate</th>
+                      <th className="text-right py-3 px-2 text-sm font-medium text-muted-foreground">Earnings</th>
+                      <th className="text-center py-3 px-2 text-sm font-medium text-muted-foreground">Status</th>
+                      <th className="text-right py-3 px-2 text-sm font-medium text-muted-foreground">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {submissions.map((submission) => {
+                      const associatedVideo = availableVideos.find(v => v.id === submission.videoId);
+                      const rate = associatedVideo?.payoutPer1K || 0;
+                      return (
+                        <tr key={submission.id} className="border-b border-white/5 hover:bg-white/5">
+                          <td className="py-3 px-2">
+                            <div className="max-w-48">
+                              <p className="text-sm font-medium line-clamp-2">{submission.title}</p>
+                            </div>
+                          </td>
+                          <td className="text-right py-3 px-2 text-sm">{submission.views.toLocaleString()}</td>
+                          <td className="text-right py-3 px-2 text-sm text-muted-foreground">₹{rate}/1K</td>
+                          <td className="text-right py-3 px-2 text-sm font-medium text-primary">₹{submission.earnings}</td>
+                          <td className="text-center py-3 px-2">
+                            <Badge 
+                              variant={submission.status === 'Approved' ? 'default' : submission.status === 'Pending' ? 'secondary' : 'destructive'}
+                              className="text-xs"
+                            >
+                              {submission.status}
+                            </Badge>
+                          </td>
+                          <td className="text-right py-3 px-2 text-sm text-muted-foreground">{submission.submittedDate}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              
+              {submissions.length === 0 && (
+                <div className="text-center py-8">
+                  <p className="text-muted-foreground">No clips submitted yet. Start clipping to see your earnings!</p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </div>
 
         {/* Clip Submission Modal */}
